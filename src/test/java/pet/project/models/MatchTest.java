@@ -9,6 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MatchTest {
 
+    // Дублирующуюся логику, приводящую тестируемый объект в нужное состояние стоит вынести во вспомогательные методы.
+
+    // В тестах тоже можно выносить повторяющиеся и важные значения в константы, чтобы их смысл был понятнее.
+
     private Match match;
     private TennisPlayer firstPlayer;
     private TennisPlayer secondPlayer;

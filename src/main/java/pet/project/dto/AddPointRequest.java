@@ -1,6 +1,10 @@
 package pet.project.dto;
 
 public class AddPointRequest {
+
+    // Этот класс можно сделать record-ом
+
+    // Нет аннотаций валидации над этим полем
     private String name;
 
     public AddPointRequest(){}

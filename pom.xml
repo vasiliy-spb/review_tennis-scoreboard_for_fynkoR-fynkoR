@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
 
     <properties>
+        <!-- Версию Java тоже можно вынести в properties -->
         <spring.version>7.1.0-M2</spring.version>
         <postgresql.version>42.7.14</postgresql.version>
         <jakarta.version>6.2.0-M2</jakarta.version>
@@ -19,6 +20,11 @@
         <jackson.version>2.22.3</jackson.version>
     </properties>
 
+  <!-- Файл конфигурации удобнее читать, когда зависимости в нём расположены в порядке важности для проекта,
+          по алфавиту или сгруппированы по слою/назначению -->
+  <!-- Как и из кода, комментарии из файлов конфигурации стоит удалять перед коммитом.-->
+  <!-- Alpha и milestone версии программного обеспечения являются предварительными выпусками.
+        Лучше использовать стабильные (GA - General Availability) версии зависимостей. -->
   <dependencies>
       <!-- Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
       <dependency>
@@ -104,6 +110,7 @@
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
+              <!-- Для maven-compiler-plugin тоже можно указать версию -->
               <configuration>
                   <source>17</source>
                   <target>17</target>

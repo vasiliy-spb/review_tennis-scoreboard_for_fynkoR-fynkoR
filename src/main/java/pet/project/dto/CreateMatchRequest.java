@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Size;
 
 public class CreateMatchRequest {
 
+    // Этот класс можно сделать record-ом. Это значительно сократит шаблонный код.
+
     @NotBlank(message = "First player name should be not empty")
     @Size(min = 3, max = 20, message = "First player name should be between 3 and 20 characters")
     private String firstPlayerName;

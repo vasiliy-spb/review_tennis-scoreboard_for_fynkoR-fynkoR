@@ -9,6 +9,7 @@ public enum Point {
     FORTY ("40"),
     ADVANTAGE ("AD");
 
+    // Больше подошло бы название stringValue
     private String title;
 
     Point(String title){

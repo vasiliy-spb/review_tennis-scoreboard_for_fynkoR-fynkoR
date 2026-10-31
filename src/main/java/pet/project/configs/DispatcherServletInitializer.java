@@ -29,6 +29,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
         registerHiddenFieldFilter(servletContext);
     }
 
+    // В проекте нет ни одного не-GET/POST эндпоинта, поэтому HiddenHttpMethodFilter не нужен.
     private void registerHiddenFieldFilter(ServletContext servletContext) {
         servletContext.addFilter("hiddenHttpMethodFilter",
                 new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");

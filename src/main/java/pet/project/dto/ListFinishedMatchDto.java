@@ -3,6 +3,12 @@ package pet.project.dto;
 import java.util.List;
 
 public class ListFinishedMatchDto {
+
+    // Этот класс можно сделать record-ом. Это значительно сократит шаблонный код.
+
+    // В объектах DTO лучше не иметь сеттеров без крайней необходимости (которой в этом проекте нет),
+        // чтобы не было возможности забыть установить одно из полей.
+
     private List<FinishedMatchDto> matches;
     private int currentPage;
     private long totalPages;

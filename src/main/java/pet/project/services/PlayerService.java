@@ -15,10 +15,21 @@ import pet.project.models.TieBreak;
 
 import java.util.Optional;
 
-@Component
+@Component // Для сервисов можно использовать специальную стереотипную аннотацию — @Service
 public class PlayerService {
+
+    // Нет интерфейса для этого класса. (см. файл "service.md" в этом же пакете)
+
+    // TODO: Класс совмещает несколько разных ответственностей:
+        // - работает с репозиторием игроков
+        // - работает с текущими матчами и занимается преобразованием счёта в DTO
+        //
+        // Это нарушает принцип единой ответственности (SRP).
+        // Стоит разделить вынести логику преобразования в отдельный компонент — маппер.
+
     private final PlayerDao playerDao;
 
+    // Если конструктор единственный в классе, то @Autowired над ним можно не писать
     @Autowired
     public PlayerService(PlayerDao playerDao){
         this.playerDao = playerDao;
@@ -31,6 +42,8 @@ public class PlayerService {
 
     @Transactional(readOnly = true)
     public boolean existsByName(String name){
+
+        // Для проверки существования можно создать специальный метод в DAO, чтобы не загружать полный объект из БД.
         return playerDao.findByName(name).isPresent();
     }
 
@@ -47,7 +60,11 @@ public class PlayerService {
         }
     }
 
+    // Логика преобразования счёта больше уместна в маппере.
     public PlayerDto playerToPlayerDto(String name, Match match){
+
+        // В проекте есть класс Player, поэтому "чистые" названия player лучше оставить для объектов именно этого типа,
+            // а для PlayerDto использовать названия с префиксом Dto.
         PlayerDto player = new PlayerDto();
         player.setName(name);
 

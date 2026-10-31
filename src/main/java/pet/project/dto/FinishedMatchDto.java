@@ -1,6 +1,12 @@
 package pet.project.dto;
 
 public class FinishedMatchDto {
+
+    // Этот класс можно сделать record-ом. Это значительно сократит шаблонный код.
+
+    // В объектах DTO лучше не иметь сеттеров без крайней необходимости (которой в этом проекте нет),
+        // чтобы не было возможности забыть установить одно из полей.
+
     private String firstPlayerName;
     private String secondPlayerName;
     private String winnerName;

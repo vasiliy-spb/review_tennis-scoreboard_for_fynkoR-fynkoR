@@ -8,6 +8,11 @@ import pet.project.exceptions.SetIsAlreadyCompletedException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SetTest {
+
+    // Дублирующуюся логику, приводящую тестируемый объект в нужное состояние стоит вынести во вспомогательные методы.
+
+    // В тестах тоже можно выносить повторяющиеся и важные значения в константы, чтобы их смысл был понятнее.
+
     private Set set;
 
     @BeforeEach

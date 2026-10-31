@@ -12,8 +12,30 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import pet.project.dto.ErrorResponse;
 import pet.project.utils.Validator;
 
-@ControllerAdvice
+@ControllerAdvice // Для REST перехватчика есть специальная аннотация @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    // TODO: Класс отправляет сообщение из исключения (`exception.getMessage()`) напрямую пользователю.
+        // Сообщения об ошибках из исключений могут содержать технические детали, которые не предназначены
+        // для конечного пользователя и могут представлять угрозу безопасности. Например, сообщение может быть
+        // `"No entity found for query 'SELECT ...'"` или `"Validation failed for field 'internalFieldName'"`,
+        // что раскрывает структуру БД или внутренние имена полей.
+        //
+        // Лучше никогда не отправлять необработанное сообщение из исключения на клиент.
+        // Вместо этого можно использовать заранее определённые, безопасные сообщения или коды ошибок.
+        // Само исключение при этом нужно логировать для разработчиков.
+        //
+        // Это повысит безопасность приложения и улучшит пользовательский опыт при возникновении ошибок.
+        //
+        // В этом проекте допустимо отправлять exception.getMessage() для ошибок валидации.
+
+    // TODO: Набор обрабатываемых исключений неполный.
+        // Стоит добавить обработку и других возможных исключений, в том числе общий обработчик
+        // для всех непредвиденных ошибок (Exception), чтобы клиент никогда не получал stack trace.
+
+    // TODO: Класс зависит от конкретной технологии персистентности (Hibernate).
+        // Стоит использовать специализированную трансляцию исключений, которую предоставляет Spring
+        // и перехватывать здесь именно его исключения.
 
     @ExceptionHandler(SameNamePlayersException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(SameNamePlayersException exception){
@@ -63,7 +85,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException exception){
         String errorMessage = exception.getBindingResult()
                 .getFieldErrors()
-                .get(0)
+                .get(0) // Можно возвращать все ошибки, а не только первую, чтобы пользователь сразу мог исправить все недочёты
                 .getDefaultMessage();
         ErrorResponse errorResponse = new ErrorResponse(errorMessage);
 

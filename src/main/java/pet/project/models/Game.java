@@ -8,6 +8,8 @@ public class Game implements Scorable{
 
     private Point firstPlayerPoint;
     private Point secondPlayerPoint;
+
+    // TODO: Название поля вводит в заблуждение. Это поле служит флагом завершения гейма, а не победы первого игрока.
     private boolean firstPlayerWin;
 
     public Game(){
@@ -16,7 +18,7 @@ public class Game implements Scorable{
     }
 
     @Override
-    public void addPointTo(PlayerPosition playerPosition){
+    public void addPointTo(PlayerPosition playerPosition){ // Можно назвать аргумент winnerPosition
 
         if(firstPlayerWin){
             throw new GameIsAlreadyWinException();
@@ -25,6 +27,7 @@ public class Game implements Scorable{
         Point winnerPoints = (playerPosition == PlayerPosition.FIRST) ? firstPlayerPoint : secondPlayerPoint;
         Point opponentPoints = (playerPosition == PlayerPosition.FIRST) ? secondPlayerPoint : firstPlayerPoint;
 
+        // Составные условия из if лучше выносить во вспомогательный метод с понятным названием
         if(winnerPoints == Point.FORTY && (opponentPoints != Point.FORTY && opponentPoints != Point.ADVANTAGE)){
             firstPlayerWin = true;
         }
@@ -44,14 +47,20 @@ public class Game implements Scorable{
 
     @Override
     public boolean isFinished() {
+
+        // Если нет конфликта имён, можно обращаться к полям без this.
         return this.firstPlayerWin;
     }
 
     public Point getFirstPlayerPoint() {
+
+        // Если нет конфликта имён, можно обращаться к полям без this.
         return this.firstPlayerPoint;
     }
 
     public Point getSecondPlayerPoint() {
+
+        // Если нет конфликта имён, можно обращаться к полям без this.
         return this.secondPlayerPoint;
     }
 

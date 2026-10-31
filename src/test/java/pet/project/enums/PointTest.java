@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PointTest {
 
+    // Нет тестов, на нормальное поведение метода next.
+
     private Point point;
 
     @Test
