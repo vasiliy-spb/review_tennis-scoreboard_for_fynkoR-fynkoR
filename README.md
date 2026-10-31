@@ -1,3 +1,5 @@
+### [Ревью на реализацию проекта находится здесь](https://github.com/vasiliy-spb/review_tennis-scoreboard_for_fynkoR-fynkoR/blob/code-review/code-review/REVIEW_README.md)
+
 # 🎾 Tennis Scoreboard
 
 Веб-приложение для ведения счёта теннисных матчей: создание матча, начисление очков в реальном времени, хранение истории завершённых матчей и поиск по имени игрока.
